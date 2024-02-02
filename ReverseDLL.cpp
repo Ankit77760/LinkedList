@@ -51,9 +51,8 @@ Node* reverseDLL(Node* head)
     return head;
 }
 
-
-Node* reverseDLLL(Node* head)
-{   
+//tc-O(N) sc-O(1)
+Node* reverseDLLL(Node* head){   
     if(head==NULL || head->next==NULL){
         return head;
     }
@@ -64,9 +63,8 @@ Node* reverseDLLL(Node* head)
         curr->prev=curr->next;
         curr->next=prev;
         curr=curr->prev; //incrementing current
+    }
     return prev->prev;
-
-
     return head;
 }
 
