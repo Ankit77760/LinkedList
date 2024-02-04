@@ -23,7 +23,7 @@ public:
     }
 };
 
-//tc-O(n^2) sc-O(1)
+// tc-O(n^2) sc-O(1)
 Node *findIntersection(Node *firstHead, Node *secondHead)
 {
     while (secondHead != nullptr)
@@ -42,88 +42,101 @@ Node *findIntersection(Node *firstHead, Node *secondHead)
     return nullptr;
 }
 
-//tc-O(n1*logn)+(n2*logn)   sc-O(N)
-Node* findIntersection(Node *firstHead, Node *secondHead)
+// tc-O(n1*logn)+(n2*logn)   sc-O(N)
+Node *findIntersection(Node *firstHead, Node *secondHead)
 {
-    unordered_set<Node*>st;
-    while(firstHead!=nullptr){
+    unordered_set<Node *> st;
+    while (firstHead != nullptr)
+    {
         st.insert(firstHead);
-        firstHead=firstHead->next;
+        firstHead = firstHead->next;
     }
 
-    while(secondHead!=nullptr){
-        if(st.find(secondHead)!=st.end()){
+    while (secondHead != nullptr)
+    {
+        if (st.find(secondHead) != st.end())
+        {
             return secondHead;
         }
-        secondHead=secondHead->next;
+        secondHead = secondHead->next;
     }
     return nullptr;
 }
 
-//by bringing them at equivalent tc-O(n1+n2)+(n1-n2)+O(n1) sc-o(1)
-Node* findIntersection(Node *firstHead, Node *secondHead)
+// by bringing them at equivalent tc-O(n1+n2)+(n1-n2)+O(n1) sc-o(1)
+Node *findIntersection(Node *firstHead, Node *secondHead)
 {
-    Node* temp1=firstHead;
-    Node* temp2=secondHead;
+    Node *temp1 = firstHead;
+    Node *temp2 = secondHead;
 
-    int cnt1=0;
-    int cnt2=0;
+    int cnt1 = 0;
+    int cnt2 = 0;
 
-    while(temp1!=nullptr){
+    while (temp1 != nullptr)
+    {
         cnt1++;
-        temp1=temp1->next;
+        temp1 = temp1->next;
     }
-    while(temp2!=nullptr){
+    while (temp2 != nullptr)
+    {
         cnt2++;
-        temp2=temp2->next;
+        temp2 = temp2->next;
     }
 
-    temp1=firstHead;
-    temp2=secondHead;
-    if(cnt1>cnt2){
-        for(int i=0;i<(cnt1-cnt2);i++){
-            temp1=temp1->next;
+    temp1 = firstHead;
+    temp2 = secondHead;
+    if (cnt1 > cnt2)
+    {
+        for (int i = 0; i < (cnt1 - cnt2); i++)
+        {
+            temp1 = temp1->next;
         }
     }
-    else if(cnt2>cnt1){
-        for(int i=0;i<(cnt2-cnt1);i++){
-            temp2=temp2->next;
+    else if (cnt2 > cnt1)
+    {
+        for (int i = 0; i < (cnt2 - cnt1); i++)
+        {
+            temp2 = temp2->next;
         }
     }
 
-    while(temp1!=nullptr && temp2!=nullptr){
-        if(temp1->next==temp2->next){
+    while (temp1 != nullptr && temp2 != nullptr)
+    {
+        if (temp1->next == temp2->next)
+        {
             return temp1->next;
         }
-        temp1=temp1->next;
-        temp2=temp2->next;
+        temp1 = temp1->next;
+        temp2 = temp2->next;
     }
     return nullptr;
 }
 
-//tc-O(n1+n2) sc-O(1)
-Node* findIntersection(Node *firstHead, Node *secondHead)
+// tc-O(n1+n2) sc-O(1)
+Node *findIntersection(Node *firstHead, Node *secondHead)
 {
-    Node* temp1=firstHead;
-    Node* temp2=secondHead;
+    Node *temp1 = firstHead;
+    Node *temp2 = secondHead;
 
-    while(temp1!=nullptr && temp2!=nullptr){
-        if(temp1->next==nullptr){
-            temp1=secondHead;
+    while (temp1 != nullptr && temp2 != nullptr)
+    {
+        if (temp1->next == nullptr)
+        {
+            temp1 = secondHead;
         }
-        else if(temp2->next==nullptr){
-            temp2=firstHead;
+        else if (temp2->next == nullptr)
+        {
+            temp2 = firstHead;
         }
-        if(temp1->next==temp2->next){
+        if (temp1->next == temp2->next)
+        {
             return temp1->next;
         }
-        temp1=temp1->next;
-        temp2=temp2->next;
+        temp1 = temp1->next;
+        temp2 = temp2->next;
     }
 
     return nullptr;
-   
-
 }
 
 int main()
